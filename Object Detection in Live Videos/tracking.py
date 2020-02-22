@@ -3,12 +3,14 @@
 import cv2
 import numpy as np
 
+#call back function for creating trackbar
 def nothing(x):
     pass
 
 cap = cv2.VideoCapture(0)
 
 cv2.namedWindow("Tracking")
+#creates the trackbars
 cv2.createTrackbar("Lower hue", "Tracking", 0, 255, nothing)
 cv2.createTrackbar("Lower saturation", "Tracking", 0, 255, nothing)
 cv2.createTrackbar("Lower value", "Tracking", 0, 255, nothing)
@@ -17,7 +19,7 @@ cv2.createTrackbar("Upper saturation", "Tracking", 255, 255, nothing)
 cv2.createTrackbar("Upper value", "Tracking", 255, 255, nothing)
 
 while True:
-    #frame = cv2.imread("smarties.png")
+    #video from camera
     _, frame = cap.read()
 
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
@@ -30,7 +32,7 @@ while True:
     u_s = cv2.getTrackbarPos("Upper saturation", "Tracking")
     u_v = cv2.getTrackbarPos("Upper value", "Tracking")
 
-
+    #updates the mask and res based on the current trackbar positions
     l_b = np.array([l_h, l_s, l_v])
     u_b = np.array([u_h, u_s, u_v])
 
@@ -42,6 +44,7 @@ while True:
     cv2.imshow("mask", mask)
     cv2.imshow("res", res)
 
+    #escape key to quit
     key = cv2.waitKey(1)
     if key == 27:
         break

@@ -6,8 +6,6 @@ import numpy as np
 def nothing(x):
     pass
 
-cap = cv2.VideoCapture(0)
-
 cv2.namedWindow("Tracking")
 cv2.createTrackbar("Lower hue", "Tracking", 0, 255, nothing)
 cv2.createTrackbar("Lower saturation", "Tracking", 0, 255, nothing)
@@ -45,5 +43,4 @@ while True:
     if key == 27:
         break
 
-cap.release()
 cv2.destroyAllWindows()
