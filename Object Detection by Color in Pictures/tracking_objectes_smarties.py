@@ -17,8 +17,7 @@ cv2.createTrackbar("Upper saturation", "Tracking", 255, 255, nothing)
 cv2.createTrackbar("Upper value", "Tracking", 255, 255, nothing)
 
 while True:
-    #frame = cv2.imread("smarties.png")
-    _, frame = cap.read()
+    frame = cv2.imread("smarties.png")
 
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
